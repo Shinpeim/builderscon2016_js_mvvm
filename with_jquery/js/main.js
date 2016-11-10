@@ -11,7 +11,7 @@ class ImageSelector {
 
     showRecentlyImages() {
         this.recentlyPostedImagesElement.empty();
-        this._getRecentlyPostedImages().then(images => {
+        $.ajax("./stub/recently_posted_images.json").then(images => {
             for (let i = 0; i < images.length; i++) {
                 const img = $(document.createElement("img"));
                 img.attr('src', images[i].url);
@@ -31,15 +31,5 @@ class ImageSelector {
         }
 
         this.selectedImagesElement.append(imageElement);
-    }
-
-    _getRecentlyPostedImages() {
-        return new Promise(function (resolve) {
-            $.ajax("./stub/recently_posted_images.json", {
-                success: (data, status, xhr) => {
-                    resolve(data);
-                }
-            });
-        });
     }
 }
