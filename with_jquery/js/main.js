@@ -15,9 +15,22 @@ class ImageSelector {
             for (let i = 0; i < images.length; i++) {
                 const img = $(document.createElement("img"));
                 img.attr('src', images[i].url);
+                img.on('click', (ev)=>{
+                    this.selectImage($(ev.target).clone());
+                });
                 this.recentlyPostedImagesElement.append(img);
             }
         });
+    }
+
+    selectImage(imageElement) {
+        const selectedImageUrl = imageElement.attr('src');
+        const sameUrlImages = this.selectedImagesElement.children().filter("img[src='" + selectedImageUrl + "']");
+        if (sameUrlImages.length > 0) {
+            return;
+        }
+
+        this.selectedImagesElement.append(imageElement);
     }
 
     _getRecentlyPostedImages() {
