@@ -1,0 +1,21 @@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="./css/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.28/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/lodash/4.16.6/lodash.min.js"></script>
+    <script src="./js/main.js"></script>
+</head>
+<body>
+<div class="main">
+    <h1>選択された画像</h1>
+    <div class="selected-images">
+        <img v-for="i in selectedImages" src="{{i.url}}" @click="unselect(i)">
+    </div>
+    <h1>最近投稿された画像</h1>
+    <div class="recently-posted-images">
+        <img v-for="i in recentlyPostedImages" src="{{i.url}}" @click="select(i)">
+    </div>
+</div>
+</body>
+</html>
