@@ -11,7 +11,8 @@ class ImageSelector {
 
     showRecentlyImages() {
         this.recentlyPostedImagesElement.empty();
-        $.ajax("./stub/recently_posted_images.json").then(images => {
+        $.ajax("./stub/recently_posted_images.json").then(json => {
+            const images = JSON.parse(json);
             for (let i = 0; i < images.length; i++) {
                 const img = $(document.createElement("img"));
                 img.attr('src', images[i].url);
@@ -29,6 +30,10 @@ class ImageSelector {
         if (sameUrlImages.length > 0) {
             return;
         }
+
+        imageElement.on('click', ev => {
+            $(ev.target).detach();
+        });
 
         this.selectedImagesElement.append(imageElement);
     }
